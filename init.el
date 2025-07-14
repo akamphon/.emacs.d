@@ -100,18 +100,18 @@
         evil-snipe-char-fold t)
 )
 
-(use-package org
-  :ensure (:wait t)
-  :config
-  (setq org-src-fontify-natively t
-	org-src-tab-acts-natively t
-	org-confirm-babel-evaluate nil
-	org-edit-src-content-indentation 0
-	org-highlight-latex-and-related '(native script entities)
-	)
-  (add-hook 'org-mode-hook #'visual-line-mode)
-  (add-hook 'org-mode-hook #'smartparens-mode)
-  )
+;; (use-package org
+;;   :ensure (:wait t)
+;;   :config
+;;   (setq org-src-fontify-natively t
+;; 	org-src-tab-acts-natively t
+;; 	org-confirm-babel-evaluate nil
+;; 	org-edit-src-content-indentation 0
+;; 	org-highlight-latex-and-related '(native script entities)
+;; 	)
+;;   (add-hook 'org-mode-hook #'visual-line-mode)
+;;   (add-hook 'org-mode-hook #'smartparens-mode)
+;;   )
 (use-package org-contrib)
 (use-package org-modern
   :config
