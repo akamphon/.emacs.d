@@ -566,12 +566,16 @@
 ;;    (setq matlab-shell-command-switches '("-nodesktop" "-nosplash"))
 ;;  )
 
-;; (use-package emms
-;;   :config
-;;   (add-to-list 'emms-player-list 'emms-player-mpd)
-;;   (emms-player-mpd-connect)
-;;   (setq emms-player-mpd-music-directory "~/Downloads/DemSongs/")
-;; )
+(use-package emms
+  :init
+  (setq emms-player-mpd-supported-regexp "\\`http[s]?://\\|\\.\\([Mm]3[Uu]\\|[Oo][Gg][Gg]\\|[Ff][Ll][Aa][Cc]\\|[Mm][Pp]3\\|[Ww][Aa][Vv]\\|[Mm][Oo][Dd]\\|[Aa][Uu]\\|[Aa][Ii][Ff][Ff]\\|[Mm][Pp]4\\|[Ww][Ee][Bb][Mm]\\)\\'")
+  :config
+  (require 'emms-setup)
+  (emms-all)
+  (setq emms-player-list '(emms-player-mpd))
+  (emms-player-mpd-connect)
+  (setq emms-player-mpd-music-directory "/home/sup/Downloads/DemSongs/")
+  )
 
 (use-package typst-ts-mode
   :ensure (:type git :host codeberg :repo "meow_king/typst-ts-mode")
