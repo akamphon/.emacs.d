@@ -251,8 +251,9 @@
     "f D"   '(delete-file :which-key "Delete file")
     "f R"   '(rename-file :which-key "Rename file")
     "f S"   '(write-file :which-key "Save file as...")
-    "f U"   '(sudo-edit :which-key "Sudo edit file")
     "o m"   '(mu4e :which-key "mu4e mode")
+    "o f"   '(elfeed :which-key "elfeed mode")
+    "o e"   '(emms :which-key "emms")
     "b b"   '(consult-buffer :which-key "Switch Buffer")
     "w w"   '(other-window :which-key "Cycle through window")
     )
@@ -269,6 +270,8 @@
 (general-nmap typst-ts-mode-map ", c" 'typst-ts-compile-and-preview)
 (general-nmap typst-ts-mode-map ", p" 'typst-ts-preview)
 (general-nmap typst-ts-mode-map ", w" 'typst-ts-watch-mode)
+
+(general-nmap emms-playlist-mode-map ", a" 'emms-add-directory)
 )
 (elpaca-wait)
 
@@ -447,14 +450,19 @@
   (pinentry-start)
   )
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
 
-(with-eval-after-load "mu4e"
+(use-package mu4e
+  :load-path "/usr/share/emacs/site-lisp/mu4e"
+  :config
   (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s mbsync -a" emacs-version)
-        epa-pinentry-mode 'ask
+	epa-pinentry-mode 'ask
 	mu4e-confirm-quit nil
-        mu4e-compose-context-policy 'always-ask)
+        mu4e-compose-context-policy 'always-ask
+	mu4e-change-filenames-when-moving t
+	mu4e-index-cleanup nil
+	mu4e-index-lazy-check t
+	mu4e-trash-without-flag t
+	)
   )
 
 (defun set-font-faces ()
@@ -582,3 +590,15 @@
 )
 
 (use-package ledger-mode)
+
+(use-package elfeed
+  :config
+  (setq elfeed-feeds
+	'(
+	  "https://feeds.npr.org/510208/podcast.xml" ;; car talk
+	  "https://feeds.npr.org/510384/podcast.xml" ;; how to do everything
+	  "https://feeds.npr.org/344098539/podcast.xml" ;; wait wait don't tell me
+	  "https://feeds.npr.org/510351/podcast.xml" ;; short wave
+	  )
+	)
+  )

@@ -295,47 +295,50 @@ Get rid of menu, tool, and scroll bars.
 File manager, accessing email, bla bla bla
 
 #+BEGIN_SRC emacs-lisp
-(use-package general
-  :demand t
-  :config
-  (general-evil-setup t)
+  (use-package general
+    :demand t
+    :config
+    (general-evil-setup t)
 
-  (general-create-definer sup/leader-keys
-    :states '(normal visual)
-    :keymaps 'override
-    :prefix "SPC"
-    :global-prefix "M-SPC")
+    (general-create-definer sup/leader-keys
+      :states '(normal visual)
+      :keymaps 'override
+      :prefix "SPC"
+      :global-prefix "M-SPC")
 
-  (sup/leader-keys
-    "."     '(find-file :which-key "Find file")
-    "f f"   '(find-file :which-key "Find file")
-    "f r"   '(consult-recent-file :which-key "Recent files")
-    "f s"   '(save-buffer :which-key "Save file")
-    "f u"   '(sudo-edit-find-file :which-key "Sudo find file")
-    "f C"   '(copy-file :which-key "Copy file")
-    "f D"   '(delete-file :which-key "Delete file")
-    "f R"   '(rename-file :which-key "Rename file")
-    "f S"   '(write-file :which-key "Save file as...")
-    "f U"   '(sudo-edit :which-key "Sudo edit file")
-    "o m"   '(mu4e :which-key "mu4e mode")
-    "b b"   '(consult-buffer :which-key "Switch Buffer")
-    "w w"   '(other-window :which-key "Cycle through window")
-    )
+    (sup/leader-keys
+      "."     '(find-file :which-key "Find file")
+      "f f"   '(find-file :which-key "Find file")
+      "f r"   '(consult-recent-file :which-key "Recent files")
+      "f s"   '(save-buffer :which-key "Save file")
+      "f u"   '(sudo-edit-find-file :which-key "Sudo find file")
+      "f C"   '(copy-file :which-key "Copy file")
+      "f D"   '(delete-file :which-key "Delete file")
+      "f R"   '(rename-file :which-key "Rename file")
+      "f S"   '(write-file :which-key "Save file as...")
+      "o m"   '(mu4e :which-key "mu4e mode")
+      "o f"   '(elfeed :which-key "elfeed mode")
+      "o e"   '(emms :which-key "emms")
+      "b b"   '(consult-buffer :which-key "Switch Buffer")
+      "w w"   '(other-window :which-key "Cycle through window")
+      )
 
-(general-nmap org-mode-map ", e" '(org-export-dispatch :which-key "Org Export Dispatch"))
-(general-nmap org-mode-map ", x" '(org-toggle-checkbox :which-key "Org Toggle Checkbox"))
-(general-nmap org-mode-map ", p" '(org-latex-export-to-pdf :which-key "Org export latex buffer to pdf"))
-(general-nmap org-mode-map ", P" '(org-beamer-export-to-pdf :which-key "Org export beamer buffer to pdf"))
-(general-nmap org-mode-map ", l" '(org-latex-export-to-latex :which-key "Org export latex buffer to latex"))
-(general-nmap org-mode-map ", L" '(org-beamer-export-to-latex :which-key "Org export beamer buffer to latex"))
+  (general-nmap org-mode-map ", e" '(org-export-dispatch :which-key "Org Export Dispatch"))
+  (general-nmap org-mode-map ", x" '(org-toggle-checkbox :which-key "Org Toggle Checkbox"))
+  (general-nmap org-mode-map ", p" '(org-latex-export-to-pdf :which-key "Org export latex buffer to pdf"))
+  (general-nmap org-mode-map ", P" '(org-beamer-export-to-pdf :which-key "Org export beamer buffer to pdf"))
+  (general-nmap org-mode-map ", l" '(org-latex-export-to-latex :which-key "Org export latex buffer to latex"))
+  (general-nmap org-mode-map ", L" '(org-beamer-export-to-latex :which-key "Org export beamer buffer to latex"))
 
-(general-nmap mu4e-compose-mode-map ", a" '(mail-add-attachment :which-key "Add attachment"))
+  (general-nmap mu4e-compose-mode-map ", a" '(mail-add-attachment :which-key "Add attachment"))
 
-(general-nmap typst-ts-mode-map ", c" 'typst-ts-compile-and-preview)
-(general-nmap typst-ts-mode-map ", p" 'typst-ts-preview)
-(general-nmap typst-ts-mode-map ", w" 'typst-ts-watch-mode)
-)
-(elpaca-wait)
+  (general-nmap typst-ts-mode-map ", c" 'typst-ts-compile-and-preview)
+  (general-nmap typst-ts-mode-map ", p" 'typst-ts-preview)
+  (general-nmap typst-ts-mode-map ", w" 'typst-ts-watch-mode)
+
+  (general-nmap emms-playlist-mode-map ", a" 'emms-add-directory)
+  )
+  (elpaca-wait)
 #+END_SRC
 
 #+RESULTS:
@@ -506,37 +509,42 @@ I need to learn more about this. Doesn't really work properly yet.
 ** Git Settings
 
 #+BEGIN_SRC emacs-lisp
-(use-package magit)
-(use-package transient)
+  (use-package magit)
+  (use-package transient)
 #+END_SRC
 
 ** Email Settings
 
 #+BEGIN_SRC emacs-lisp
-(require 'smtpmail)
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-smtp-user "sappak@kku.ac.th"
-      user-full-name "Sappinandana Akamphon"
-      user-mail-address "sappak@kku.ac.th"
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      )
+  (require 'smtpmail)
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-smtp-user "sappak@kku.ac.th"
+        user-full-name "Sappinandana Akamphon"
+        user-mail-address "sappak@kku.ac.th"
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587
+        )
 
-(use-package pinentry
-  :init
-  (pinentry-start)
-  )
+  (use-package pinentry
+    :init
+    (pinentry-start)
+    )
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
 
-(with-eval-after-load "mu4e"
-  (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s mbsync -a" emacs-version)
-        epa-pinentry-mode 'ask
-	mu4e-confirm-quit nil
-        mu4e-compose-context-policy 'always-ask)
-  )
+  (use-package mu4e
+    :load-path "/usr/share/emacs/site-lisp/mu4e"
+    :config
+    (setq mu4e-get-mail-command (format "INSIDE_EMACS=%s mbsync -a" emacs-version)
+  	epa-pinentry-mode 'ask
+  	mu4e-confirm-quit nil
+          mu4e-compose-context-policy 'always-ask
+  	mu4e-change-filenames-when-moving t
+  	mu4e-index-cleanup nil
+  	mu4e-index-lazy-check t
+  	mu4e-trash-without-flag t
+  	)
+    )
 #+END_SRC
 
 ** Font Settings
@@ -698,4 +706,20 @@ I need to learn more about this. Doesn't really work properly yet.
 
 #+BEGIN_SRC emacs-lisp
 (use-package ledger-mode)
+#+END_SRC
+
+** Elfeed
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed
+    :config
+    (setq elfeed-feeds
+  	'(
+  	  "https://feeds.npr.org/510208/podcast.xml" ;; car talk
+  	  "https://feeds.npr.org/510384/podcast.xml" ;; how to do everything
+  	  "https://feeds.npr.org/344098539/podcast.xml" ;; wait wait don't tell me
+  	  "https://feeds.npr.org/510351/podcast.xml" ;; short wave
+  	  )
+  	)
+    )
 #+END_SRC
