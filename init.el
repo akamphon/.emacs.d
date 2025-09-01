@@ -230,6 +230,11 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+(use-package valign
+  :config
+  (add-hook 'org-mode-hook #'valign-mode)
+  )
+
 (use-package general
   :demand t
   :config
@@ -434,6 +439,9 @@
 
 (use-package magit)
 (use-package transient)
+(use-package cond-let
+  :ensure (:type git :host github :repo "tarsius/cond-let")
+  )
 
 (require 'smtpmail)
 (setq message-send-mail-function 'smtpmail-send-it
@@ -462,6 +470,7 @@
 	mu4e-index-cleanup nil
 	mu4e-index-lazy-check t
 	mu4e-trash-without-flag t
+	mu4e-trash-folder "/KKU/[Gmail]/Trash"
 	)
   )
 
@@ -600,5 +609,6 @@
 	  "https://feeds.npr.org/344098539/podcast.xml" ;; wait wait don't tell me
 	  "https://feeds.npr.org/510351/podcast.xml" ;; short wave
 	  )
+	elfeed-search-filter "@6-months-ago"
 	)
   )

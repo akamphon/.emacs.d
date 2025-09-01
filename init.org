@@ -285,9 +285,14 @@ Letting me know which keys do what.
 Get rid of menu, tool, and scroll bars.
 
 #+BEGIN_SRC emacs-lisp
- (menu-bar-mode -1)
- (tool-bar-mode -1)
- (scroll-bar-mode -1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+
+  (use-package valign
+    :config
+    (add-hook 'org-mode-hook #'valign-mode)
+    )
 #+END_SRC
 
 ** General Keybindings
@@ -511,6 +516,9 @@ I need to learn more about this. Doesn't really work properly yet.
 #+BEGIN_SRC emacs-lisp
   (use-package magit)
   (use-package transient)
+  (use-package cond-let
+    :ensure (:type git :host github :repo "tarsius/cond-let")
+    )
 #+END_SRC
 
 ** Email Settings
@@ -543,6 +551,7 @@ I need to learn more about this. Doesn't really work properly yet.
   	mu4e-index-cleanup nil
   	mu4e-index-lazy-check t
   	mu4e-trash-without-flag t
+  	mu4e-trash-folder "/KKU/[Gmail]/Trash"
   	)
     )
 #+END_SRC
@@ -720,6 +729,7 @@ I need to learn more about this. Doesn't really work properly yet.
   	  "https://feeds.npr.org/344098539/podcast.xml" ;; wait wait don't tell me
   	  "https://feeds.npr.org/510351/podcast.xml" ;; short wave
   	  )
+  	elfeed-search-filter "@6-months-ago"
   	)
     )
 #+END_SRC
