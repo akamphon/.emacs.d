@@ -594,6 +594,10 @@
 (use-package typst-ts-mode
   ;;:ensure (:type git :host codeberg :repo "meow_king/typst-ts-mode" :branch "develop")
   :ensure (:type git :host codeberg :repo "YTG123/typst-ts-mode" :branch "fix-autoload")
+  :config
+  (setq typst-ts-preview-function
+	(lambda (pdf-file)
+	  (start-process "typst-pdf-viewer" nil "xdg-open" pdf-file)))
   )
 (use-package citar-typst
   :ensure (:type git :host codeberg :repo "havarddj/citar-typst")
